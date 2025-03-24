@@ -1,4 +1,4 @@
-import { database } from './index.html';
+import { database } from './index.html'; // Remova './index.html'
 
 const urlInput = document.getElementById('urlInput');
 const createLinkButton = document.getElementById('createLinkButton');
