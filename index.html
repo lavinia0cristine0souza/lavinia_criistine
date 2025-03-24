@@ -8,7 +8,7 @@
         const firebaseConfig = {
             apiKey: "SUA_API_KEY", // Substitua pela sua chave de API
             authDomain: "projeto-68121.firebaseapp.com",
-            databaseURL: "https://projeto-68121-default-rtdb.firebaseio.com", // Substitua pela sua URL do banco de dados
+            databaseURL: "https://projeto-68121-default-rtdb.firebaseio.com/", // Substitua pela sua URL do banco de dados
             projectId: "projeto-68121",
             storageBucket: "projeto-68121.firebasestorage.app",
             messagingSenderId: "39923570106",
@@ -17,6 +17,7 @@
         };
         const app = firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
+        export { database };
     </script>
 </head>
 <body>
@@ -24,6 +25,6 @@
     <input type="text" id="urlInput" placeholder="URL de destino">
     <button id="createLinkButton">Criar Link</button>
     <p id="trackingLink"></p>
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>
