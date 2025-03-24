@@ -1,5 +1,5 @@
 const firebaseConfig = {
-    apiKey: "SUA_API_KEY", // Substitua pela sua API Key real
+    apiKey: "AIzaSyBb_fTtLdRVHXmK8SDqrb2Cmfz66JdTxxI",
     authDomain: "projeto-68121.firebaseapp.com",
     projectId: "projeto-68121",
     storageBucket: "projeto-68121.firebasestorage.app",
@@ -18,7 +18,7 @@ const trackingLink = document.getElementById('trackingLink');
 createLinkButton.addEventListener('click', () => {
     const url = urlInput.value;
     const trackingId = generateTrackingId();
-    const trackingUrl = `https://lavinia0cristine0souza.github.io/rastreador/track?id=${trackingId}&url=${encodeURIComponent(url)}`; // Atualize o nome do repositório
+    const trackingUrl = `https://lavinia0cristine0souza.github.io/lavinia_criistine/track?id=${trackingId}&url=${encodeURIComponent(url)}`; // Nome do repositório corrigido
     trackingLink.textContent = trackingUrl;
 
     // Colete os dados de localização apenas quando o usuário clicar no link
