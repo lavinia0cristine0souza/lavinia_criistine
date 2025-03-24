@@ -28,16 +28,24 @@
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
 
-        database.ref('locations').child(trackingId).once('value', snapshot => {
-            const data = snapshot.val();
-            if (data) {
-                document.getElementById('latitude').textContent = `Latitude: ${data.latitude}`;
-                document.getElementById('longitude').textContent = `Longitude: ${data.longitude}`;
-                document.getElementById('timestamp').textContent = `Timestamp: ${data.timestamp}`;
-            } else {
-                document.getElementById('latitude').textContent = 'Dados de localização não encontrados.';
-            }
-        });
+        // Colete os dados de localização quando a página for carregada
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position => {
+                const { latitude, longitude } = position.coords;
+                database.ref('locations').child(trackingId).set({
+                    latitude: latitude,
+                    longitude: longitude,
+                    timestamp: Date.now()
+                });
+
+                // Exiba os dados de localização na página
+                document.getElementById('latitude').textContent = `Latitude: ${latitude}`;
+                document.getElementById('longitude').textContent = `Longitude: ${longitude}`;
+                document.getElementById('timestamp').textContent = `Timestamp: ${Date.now()}`;
+            });
+        } else {
+            document.getElementById('latitude').textContent = 'Geolocalização não suportada pelo navegador.';
+        }
     </script>
 </body>
 </html>
