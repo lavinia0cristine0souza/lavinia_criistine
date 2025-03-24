@@ -1,3 +1,5 @@
+import { database } from './index.html';
+
 const urlInput = document.getElementById('urlInput');
 const createLinkButton = document.getElementById('createLinkButton');
 const trackingLink = document.getElementById('trackingLink');
