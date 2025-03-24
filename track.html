@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rastreamento de Localização</title>
+</head>
+<body>
+    <h1>Dados de Localização</h1>
+    <p id="latitude"></p>
+    <p id="longitude"></p>
+    <p id="timestamp"></p>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const trackingId = urlParams.get('id');
+
+        // Use o trackingId para buscar os dados de localização no banco de dados Realtime Database
+        // e exibi-los na página.
+    </script>
+</body>
+</html>
