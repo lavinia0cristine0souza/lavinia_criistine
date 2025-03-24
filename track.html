@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>Rastreamento de Localização</title>
+    <script src="https://www.gstatic.com/firebasejs/11.5.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.5.0/firebase-database-compat.js"></script>
 </head>
 <body>
     <h1>Dados de Localização</h1>
@@ -13,8 +15,29 @@
         const urlParams = new URLSearchParams(window.location.search);
         const trackingId = urlParams.get('id');
 
-        // Use o trackingId para buscar os dados de localização no banco de dados Realtime Database
-        // e exibi-los na página.
+        const firebaseConfig = {
+            apiKey: "AIzaSyBb_fTtLdRVHXmK8SDqrb2Cmfz66JdTxxI",
+            authDomain: "projeto-68121.firebaseapp.com",
+            projectId: "projeto-68121",
+            storageBucket: "projeto-68121.firebasestorage.app",
+            messagingSenderId: "39923570106",
+            appId: "1:39923570106:web:dd1108773c2d087cebb983",
+            measurementId: "G-1G1F8RQRN6"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        database.ref('locations').child(trackingId).once('value', snapshot => {
+            const data = snapshot.val();
+            if (data) {
+                document.getElementById('latitude').textContent = `Latitude: ${data.latitude}`;
+                document.getElementById('longitude').textContent = `Longitude: ${data.longitude}`;
+                document.getElementById('timestamp').textContent = `Timestamp: ${data.timestamp}`;
+            } else {
+                document.getElementById('latitude').textContent = 'Dados de localização não encontrados.';
+            }
+        });
     </script>
 </body>
 </html>
